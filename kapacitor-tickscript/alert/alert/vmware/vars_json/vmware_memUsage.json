@@ -1,0 +1,21 @@
+{
+        "measurement": {"type" : "string", "value" : "vmware_vm_resource"},
+        "groups": {"type": "list", "value: [
+					     {"type": "string", "value": "center"},
+                                             {"type": "string", "value": "vmName"},
+                                             {"type": "string", "value": "hostName"},
+					     {"type": "string", "value": "clusterName"}
+					    ]
+		  	},
+        "id": {"type": "string", "value": "vmware memUsage alert"},
+        "message": {"type": "string", "value": "'{{ index .Tags \"vmName\" }}/{{ index .Fields \"memUsage\" }}'"},
+        "period": {"type": "duration", "value": "1m"},
+        "every": {"type": "duration", "value": "1m"},
+
+        "info": {"type": "lambda", "value": "\"memoryUsage\" >= 10"}
+        "warn": {"type": "lambda", "value": "\"memoryUsage\" >= 20"}
+        "crit": {"type": "lambda", "value": "\"memoryUsage\" >= 30"}
+
+        "post": {"type": "string", "value": "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"}
+        "path": {"type": "string", "value": "/tmp/vmware-vm-mem-alert.log"}
+}

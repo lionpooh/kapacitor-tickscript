@@ -1,0 +1,17 @@
+{
+	"measurement": {"type" : "string", "value" : "bosh_vm_resource"},
+	"groups": {"type": "list", "value": [{"type": "string", "value": "center"},
+					     {"type": "string", "value": "jobName"},
+					     {"type": "string", "value": "index"}]},
+	"id": {"type": "string", "value": "bosh_cpuUsage_alert"},
+	"message": {"type": "string", "value": "'{{ index .Tags \"jobName\" }}/{{ index .Fields \"cpuUsage\" }}'"},
+	"period": {"type": "duration", "value": "1m"},
+	"every": {"type": "duration", "value": "1m"},
+	
+	"info": {"type": "lambda", "value": "\"cpuUsage\" >= 2"},
+	"warn": {"type": "lambda", "value": "\"cpuUsage\" >= 1"},
+	"crit": {"type": "lambda", "value": "\"cpuUsage\" >= 0.5"},
+	
+	"post": {"type": "string", "value": "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"},
+	"path": {"type": "string", "value": "/tmp/bosh-cpu-alert.log"}
+}

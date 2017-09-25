@@ -1,0 +1,19 @@
+{
+        "measurement": {"type" : "string", "value" : "bosh_vm_process"},
+        "groups": {"type": "list", "value: [{"type": "string", "value": "center"},
+                                             {"type": "string", "value": "jobName"},
+                                             {"type": "string", "value": "index"},
+					     {"type": "string", "value": "processName"}
+					    ]
+			},
+        "id": {"type": "string", "value": "bosh_process_state_alert"},
+        "message": {"type": "string", "value": "'{{ index .Fields \"processName\" }}/{{ index .Fields \"state\" }}'"},
+        "period": {"type": "duration", "value": "1m"},
+        "every": {"type": "duration", "value": "1m"},
+
+        "info": {"type": "lambda", "value": "\"state\" == 'running'"},
+        "crit": {"type": "lambda", "value": "\"state\" == 'stopped'"},
+
+        "post": {"type": "string", "value": "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"},
+        "path": {"type": "string", "value": "/tmp/bosh-vm-cpu-alert.log"}
+}

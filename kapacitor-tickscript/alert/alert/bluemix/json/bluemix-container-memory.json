@@ -1,0 +1,12 @@
+{
+    "measurement": {"type" : "string", "value" : "bluemix_container" },
+    "message": {"type": "string", "value": "'{{ index .Tags \"center\" }}/{{ index .Tags \"orgName\" }}/{{ index .Tags \"spaceName\" }}/{{ index .Tags \"applicationName\" }} Memory {{ index .Fields \"memoryPercentage\" }}'"},
+    "id": {"type" : "string", "value" : "Bluemix Memory Usage" },
+    "url": {"type" : "string", "value" : "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm" },
+    "log": {"type" : "string", "value" : "/tmp/bluemix-container-memory-alert.log" },
+    "groups": {"type": "list", "value": [{"type":"string", "value":"center"},{"type":"string", "value":"orgName"},{"type":"string", "value":"spaceName"},{"type":"string","value":"applicationName"}]},
+    "info": {"type" : "lambda", "value" : "\"memoryPercentage\" >= 50.0" },
+    "warn": {"type" : "lambda", "value" : "\"memeoryPercentage\" >= 60.0" },
+    "crit": {"type" : "lambda", "value" : "\"memoryPercentage\" >= 70.0" },
+    "window": {"type" : "duration", "value" : "60s" }
+}

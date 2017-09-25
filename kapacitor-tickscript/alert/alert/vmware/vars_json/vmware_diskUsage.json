@@ -1,0 +1,22 @@
+{
+        "measurement": {"type" : "string", "value" : "vmware_vm_disk"},
+        "groups": {"type": "list", "value: [
+					     {"type": "string", "value": "center"},
+                                             {"type": "string", "value": "vmName"},
+                                             {"type": "string", "value": "hostName"},
+					     {"type": "string", "value": "clusterName"},
+					     {"type": "string", "value": "diskPath"}
+					    ]
+		  	},
+        "id": {"type": "string", "value": "vmware diskUsage alert"},
+        "message": {"type": "string", "value": "'{{ index .Tags \"vmName\" }}/{{ index .Tags \"diskPath\" }}/{{ index .Fields \"diskUsage\" }}'"},
+        "period": {"type": "duration", "value": "1m"},
+        "every": {"type": "duration", "value": "1m"},
+
+        "info": {"type": "lambda", "value": "\"diskUsage\" >= 10"}
+        "warn": {"type": "lambda", "value": "\"diskUsage\" >= 20"}
+        "crit": {"type": "lambda", "value": "\"diskUsage\" >= 30"}
+
+        "post": {"type": "string", "value": "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"}
+        "path": {"type": "string", "value": "/tmp/vmware-vm-disk-alert.log"}
+}

@@ -1,0 +1,18 @@
+{
+	"measurement": {"type" : "string", "value" : "bosh_vm_resource"},
+	"groups": {"type" : "list", 
+		   "value" : [{"type":"string", "value":"center"},
+			      {"type":"string", "value":"jobName"},
+			      {"type":"string", "value":"index"}]
+		  },
+	"id": {"type" : "string", "value" : "bosh_state_alert"},
+	"message": {"type" : "string", "value" : "'{{ index .Tags \"jobName\" }}/{{ index .Fields \"jobState\" }}'"},
+	"period": {"type" : "duration", "value" : "1m"},
+	"every": {"type" : "duration", "value" : "1m"},
+
+	"info": {"type" : "lambda", "value" : "\"jobState\" == 'running'"},
+	"crit": {"type" : "lambda", "value" : "\"jobState\" == 'stopped'"},	
+
+	"path": {"type": "string", "value": "/tmp/bosh-alert-status.log"},
+	"post": {"type": "string", "value"" "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"}
+}

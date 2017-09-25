@@ -1,0 +1,29 @@
+var measurement	string
+var info	lambda
+var warn 	lambda
+var crit 	lambda
+var window 	duration
+var id 		string
+var log 	string
+var url		string
+var message	string
+var groups = [*]
+
+stream
+   |from()
+     .measurement(measurement)
+     .groupBy(groups)
+   |window()
+     .period(window)
+     .every(window)
+   |alert()
+     .id(id)
+     .message(message)
+     .details('')
+     .info(info)
+     .warn(warn)
+     .crit(crit)
+     .stateChangesOnly()
+     .post(url)
+     .log(log)
+ 

@@ -1,0 +1,20 @@
+{
+        "measurement": {"type" : "string", "value" : "bosh_vm_resource"},
+        "groups": {"type": "list", "value": [
+                                             {"type": "string", "value": "center"},
+                                             {"type": "string", "value": "jobName"},
+                                             {"type": "string", "value": "index"},
+                                            ]
+                        },
+        "id": {"type": "string", "value": "bosh_memUsage_alert"},
+        "message": {"type": "string", "value": "'{{ index .Tags \"jobName\" }}/{{ index .Fields \"memory_percent\" }}'"},
+        "period": {"type": "duration", "value": "1m"},
+        "every": {"type": "duration", "value": "1m"},
+
+        "info": {"type": "lambda", "value": "\"memory_percent\" >= 10"},
+        "warn": {"type": "lambda", "value": "\"memory_percent\" >= 20"},
+        "crit": {"type": "lambda", "value": "\"memory_percnet\" >= 30"},
+
+        "post": {"type": "string", "value": "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm"},
+        "path": {"type": "string", "value": "/tmp/bosh-vm-mem-alert.log"}
+}

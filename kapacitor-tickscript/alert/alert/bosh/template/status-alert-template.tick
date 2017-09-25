@@ -1,0 +1,33 @@
+var id string
+var message string
+var measurement string
+
+var groups = [*]
+
+var period duration
+var every duration
+
+var info lambda
+//var warn lambda
+var crit lambda
+
+var path string
+var post string
+
+var data = stream
+		|from()
+		 .measurement(measurement)
+		 .groupBy(groups)
+		|window()
+		 .period(period)
+		 .every(every)
+var alert = data
+		|alert()
+		 .id(id)
+		 .message(message)
+		 .details('')
+		 .info(info)
+		 .crit(crit)
+ 		 .log('/tmp/state_alert.log') 
+		//.post(post)
+

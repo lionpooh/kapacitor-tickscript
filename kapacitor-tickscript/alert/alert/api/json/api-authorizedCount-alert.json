@@ -1,0 +1,12 @@
+{
+    "measurement": {"type" : "string", "value" : "gw_api_metrics" },
+    "message": {"type": "string", "value": "'{{ index .Tags \"center\" }}/{{ index .Tags \"gubun\" }}/{{ index .Tags \"cluster_hostname\" }}/{{ index .Tags \"apiName\" }} authorizedCount {{ index .Fields \"authorizedCount\" }}'"},
+    "id": {"type" : "string", "value" : "API authorizedCount" },
+    "url": {"type" : "string", "value" : "http://g2-onm-alarm-dev.sk.kr.mybluemix.net/alarm" },
+    "log": {"type" : "string", "value" : "/tmp/api-authorizedCount-alert.log" },
+    "groups": {"type": "list", "value": [{"type":"string", "value":"center"},{"type":"string", "value":"gubun"},{"type":"string", "value":"cluster_hostname"},{"type":"string","value":"apiName"}]},
+    "info": {"type" : "lambda", "value" : "\"authorizedCount\" >= 10.0" },
+    "warn": {"type" : "lambda", "value" : "\"authorizedCount\" >= 50.0" },
+    "crit": {"type" : "lambda", "value" : "\"authorizedCount\" >= 100.0" },
+    "window": {"type" : "duration", "value" : "60s" }
+}
